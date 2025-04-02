@@ -1,5 +1,0 @@
-any javascript value that is not a number, a string, a boolean , a symbol, null or undefined is an object.
-
-object types are mutable and primitave types number string and bool are immutable.
-mutable can change
-

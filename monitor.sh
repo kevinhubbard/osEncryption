@@ -3,7 +3,8 @@
 process_name="EncryptFilesInFolder"
 while true; do
     # Check if the process is running using `pgrep`
-    if pgrep -x "$process_name" > /dev/null
+    echo "Checking for $process_name..."
+    if pgrep -af "java.*EncryptFilesInFolder" > /dev/null
     then
         echo "Encryption process is running!"
         

